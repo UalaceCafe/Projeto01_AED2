@@ -8,4 +8,4 @@ typedef struct
 
 void populate_array(char *filepath, info *array, size_t size);
 void quickSort(info *array, int left, int right);
-// void insert(info *array, int count);
+void insertionSort(info *array, int size);
