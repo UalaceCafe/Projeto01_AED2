@@ -7,11 +7,17 @@
 #define DATA2_SIZE 500
 #define DATA3_SIZE 1000
 
-int main(void) {
+int main(void)
+{
     info contacts[DATA1_SIZE] = {};
     populate_array("data/data_100.csv", contacts, DATA1_SIZE);
 
-    for(int i = 0; i < DATA1_SIZE; i++) {
+    quickSort(contacts, 0, DATA1_SIZE - 1);
+
+    insertionSort(contacts, DATA1_SIZE);
+
+    for (int i = 0; i < DATA1_SIZE; i++)
+    {
         printf("Name: %s | Phone: %s\n", contacts[i].name, contacts[i].phone);
     }
 
