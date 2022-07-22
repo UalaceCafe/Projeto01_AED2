@@ -44,7 +44,7 @@ void quickSort(info *array, int left, int right)
     int i, j;
     char *x;
     char tempName[100];
-    char tempPhone[100];
+    char tempPhone[20];
 
     i = left;
     j = right;
@@ -53,13 +53,11 @@ void quickSort(info *array, int left, int right)
     do
     {
         while ((strcmp(array[i].name, x) < 0) && (i < right))
-        {
             i++;
-        }
+
         while ((strcmp(array[j].name, x) > 0) && (j > left))
-        {
             j--;
-        }
+
         if (i <= j)
         {
             strcpy(tempName, array[i].name);
@@ -74,27 +72,29 @@ void quickSort(info *array, int left, int right)
     } while (i <= j);
 
     if (left < j)
-    {
         quickSort(array, left, j);
-    }
+
     if (i < right)
-    {
         quickSort(array, i, right);
-    }
 }
 
-// void insert(info *array, int count)
-// {
+void insertionSort(info *array, int size)
+{
+    int i, j;
+    char tempName[100];
+    char tempPhone[20];
 
-//     int i, b;
-//     info t;
+    for (i = 1; i < size; i++)
+    {
+        for (j = i; j > 0 && strcmp(array[j].name, array[j - 1].name) < 0; j--)
+        {
+            strcpy(tempName, array[j - 1].name);
+            strcpy(array[j - 1].name, array[j].name);
+            strcpy(array[j].name, tempName);
 
-//     for (i = 1; i < count; ++i)
-//     {
-//         t = array[i];
-//         for (b = i - 1; (b >= 0) && (t.name < array[b].name); b--)
-//             array[b + 1] = array[b];
-//         array[b + 1] = t;
-//         // array = t;
-//     }
-// }
+            strcpy(tempPhone, array[j - 1].phone);
+            strcpy(array[j - 1].phone, array[j].phone);
+            strcpy(array[j].phone, tempPhone);
+        }
+    }
+}
