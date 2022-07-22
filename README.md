@@ -29,5 +29,5 @@
 
 # Como executar
 
-* Compile no terminal com o comando `gcc main.c lib/csv.c -o main`
+* Compile no terminal com o comando `gcc lib/sort.c lib/csv.c main.c -o main`
 * Execute com `.\main` ou `main.exe`

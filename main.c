@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "include/csv.h"
+#include "include/sort.h"
 
 #define DATA1_SIZE 100
 #define DATA2_SIZE 500
@@ -12,9 +13,9 @@ int main(void)
     info contacts[DATA1_SIZE] = {};
     populate_array("data/data_100.csv", contacts, DATA1_SIZE);
 
-    quickSort(contacts, 0, DATA1_SIZE - 1);
+    quick_sort(contacts, 0, DATA1_SIZE - 1);
 
-    insertionSort(contacts, DATA1_SIZE);
+    insertion_sort(contacts, DATA1_SIZE);
 
     for (int i = 0; i < DATA1_SIZE; i++)
     {
