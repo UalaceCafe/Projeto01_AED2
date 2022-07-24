@@ -42,17 +42,21 @@ void insertion_sort(info *array, int size)
     char tempName[100];
     char tempPhone[20];
 
-    for (i = 1; i < size; i++)
+    for (i = 1; i <= size - 1; i++)
     {
-        for (j = i; j > 0 && strcmp(array[j].name, array[j - 1].name) < 0; j--)
-        {
-            strcpy(tempName, array[j - 1].name);
-            strcpy(array[j - 1].name, array[j].name);
-            strcpy(array[j].name, tempName);
+        strcpy(tempName, array[i].name);
+        strcpy(tempPhone, array[i].phone);
 
-            strcpy(tempPhone, array[j - 1].phone);
-            strcpy(array[j - 1].phone, array[j].phone);
-            strcpy(array[j].phone, tempPhone);
+        j = i - 1;
+
+        while (j >= 0 && strcmp(tempName, array[j].name) < 0)
+        {
+            strcpy(array[j + 1].name, array[j].name);
+            strcpy(array[j + 1].phone, array[j].phone);
+            j--;
         }
+
+        strcpy(array[j + 1].name, tempName);
+        strcpy(array[j + 1].phone, tempPhone);
     }
 }
