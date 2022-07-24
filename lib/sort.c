@@ -1,46 +1,42 @@
 #include <string.h>
 #include "../include/sort.h"
 
-void quick_sort(info * array, int left, int right)
+void quick_sort(info *array, int left, int right)
 {
-    int i, j;
-    char * x;
+    int pivo = left, j;
     char tempName[100];
     char tempPhone[20];
 
-    i = left;
-    j = right;
-    x = array[(left + right) / 2].name;
-
-    do
+    for (int i = left + 1; i <= right; i++)
     {
-        while ((strcmp(array[i].name, x) < 0) && (i < right))
-            i++;
+        j = i;
 
-        while ((strcmp(array[j].name, x) > 0) && (j > left))
-            j--;
-
-        if (i <= j)
+        if (strcmp(array[j].name, array[pivo].name) < 0)
         {
-            strcpy(tempName, array[i].name);
-            strcpy(tempPhone, array[i].phone);
-            strcpy(array[i].name, array[j].name);
-            strcpy(array[i].phone, array[j].phone);
+            strcpy(tempName, array[j].name);
+            strcpy(tempPhone, array[j].phone);
+
+            while (j > pivo)
+            {
+                strcpy(array[j].name, array[j - 1].name);
+                strcpy(array[j].phone, array[j - 1].phone);
+                j--;
+            }
+
             strcpy(array[j].name, tempName);
             strcpy(array[j].phone, tempPhone);
-            i++;
-            j--;
+            pivo++;
         }
-    } while (i <= j);
+    }
 
-    if (left < j)
-        quick_sort(array, left, j);
+    if (pivo - 1 >= left)
+        quick_sort(array, left, pivo - 1);
 
-    if (i < right)
-        quick_sort(array, i, right);
+    if (pivo + 1 <= right)
+        quick_sort(array, pivo + 1, right);
 }
 
-void insertion_sort(info * array, int size)
+void insertion_sort(info *array, int size)
 {
     int i, j;
     char tempName[100];
